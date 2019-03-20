@@ -12,39 +12,22 @@ module.exports = function makeExchange(currency) {
 	}
 
 	let result = {};
+	let coins = [
+		{ type: 'H', value: 50 },
+		{ type: 'Q', value: 25 },
+		{ type: 'D', value: 10 },
+		{ type: 'N', value: 5 },
+		{ type: 'P', value: 1 },
+	];
 
-	x = Math.floor(currency / 50);
-	if (x > 0) {
-		console.log('Half-dollars');
-		result['H'] = x;
-		currency = currency % 50;
-	}
+	coins.forEach(coin => {
+		console.log(coin);
+		amount = Math.floor(currency / coin.value);
+		if (amount > 0) {
+			result[coin.type] = amount;
+			currency = currency % coin.value;
+		}
+	});
 
-	x = Math.floor(currency / 25);
-	if (x > 0) {
-		console.log('Quarters');
-		result['Q'] = x;
-		currency = currency % 25;
-	}
-
-	x = Math.floor(currency / 10);
-	if (x > 0) {
-		console.log('Dimes');
-		result['D'] = x;
-		currency = currency % 10;
-	}
-
-	x = Math.floor(currency / 5);
-	if (x > 0) {
-		console.log('Nickels');
-		result['N'] = x;
-		currency = currency % 5;;
-	}
-
-	if (currency > 0) {
-		console.log('Pennies');
-		result['P'] = currency;
-	}
-	
 	return result;
 }
