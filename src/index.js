@@ -21,7 +21,6 @@ module.exports = function makeExchange(currency) {
 	];
 
 	coins.forEach(coin => {
-		console.log(coin);
 		amount = Math.floor(currency / coin.value);
 		if (amount > 0) {
 			result[coin.type] = amount;
